@@ -1,0 +1,66 @@
+<html>
+  <div class = "container" >
+  <div class = "col-md-8" >
+  <h1>Task Helper</h1>
+  <table class = "table table-bordered table-striped table-hover">
+  <thead>
+  <tr>
+  <th class ="text-center bg-primary">Description</th>
+  <th class ="text-center bg-primary">Status</th>
+  <th class ="text-center bg-primary">Operations</th>
+  </tr>
+  </thead>
+  <tbody >
+  <tr *ngFor="let task of tasks" >
+          
+  <td>{{task.taskDesc}}</td>
+  <td>{{task.status}}</td>
+  
+  <td>
+  <button class ="btn btn-info btn-xs" (click)= "showEditTaskForm(task)"><i class ="fa fa-edit"></i></button>
+  <button class ="btn btn-danger btn-xs" (click)= "removeTask(task)"><i class ="fa fa-minus"></i></button>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <button class ="btn btn-success"  (click)="showAddTaskForm()"><i >Add</i></button>
+  <button class ="btn btn-success"  (click)="showCompletedTask()"><i >Completed</i></button>
+  <button class ="btn btn-success"  (click)="showPendingTask()"><i >Pending</i></button>
+  <button class ="btn btn-success"  (click)="showAllTask()"><i >All</i></button>
+  <br><br>
+  
+  <div class = "col-md-6">
+  <form *ngIf = "taskForm">  
+  <h2>Add Task</h2>
+  <table class = "table table-bordered table-striped table-hover">  
+  <thead>
+  <tr>  
+  <tr><td>Description:</td><td><input type ="text" name ="description" [(ngModel)]= "newTask.taskDesc"></td></tr>
+  <tr> <td>Status:</td><td><input type ="text" name ="status" [(ngModel)]= "newTask.status">	</td></tr><tr>
+  
+  <td><button type ="button " class = "btn btn-primary" (click)="saveTask(newTask)">Submit</button></td><td>
+  <button type ="button " class = "btn btn-warning pull-ce" (click)="cancelAdd()">Cancel</button></td></tr>  
+  </thead>
+  </table>  
+  </form>
+  </div>
+  
+  <div class = "col-md-6">
+  <form *ngIf = "editedTaskForm">
+  <h2>Edit Task </h2>
+  <table class = "table table-bordered table-striped table-hover">  
+  <thead>
+  <tr>  
+  <tr><td>Description:</td><td><input type ="text" name ="description" [(ngModel)]= "editedTask.taskDesc"></td></tr>
+  <tr><td>Status:</td><td><input type ="text" name ="status" [(ngModel)]= "editedTask.status"></td></tr>
+  
+  <td><button type ="button " class = "btn btn-primary" (click)="updateTask(editedTask)">Submit</button></td><td>
+  <button type ="button " class = "btn btn-warning" (click)="cancelEdit()">Cancel</button></td><td>
+ </thead>
+  </table> 
+  </form>
+  </div>
+  
+  </div>
+  </div>
+  </html>
